@@ -10,8 +10,11 @@ public class TaskPanel implements ActionListener{
     JLabel dateLabel;
     JLabel priorityLabel;
     JButton button = new JButton("Delete");
-    public TaskPanel(Task task){
+    Runnable deleteCallback;
+
+    public TaskPanel(Task task, Runnable deleteCallback){
         this.task = task;
+        this.deleteCallback = deleteCallback;
         this.nameLabel = new JLabel(task.getName());
         this.dateLabel = new JLabel(task.getDate());
         this.priorityLabel = new JLabel(task.getPriority());
@@ -31,5 +34,6 @@ public class TaskPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         System.out.println(this.task.getUuid());
         TaskList.deleteTask(this.task.getUuid());
+        this.deleteCallback.run();
     }
 }
