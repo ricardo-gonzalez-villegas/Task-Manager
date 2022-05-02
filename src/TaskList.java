@@ -4,17 +4,12 @@ import java.util.UUID;
 public class TaskList {
     private static ArrayList<Task> list = new ArrayList<>();
 
-    public void addTask(Task task){
+    public static void addTask(Task task){
         list.add(task);
     }
 
     public static void deleteTask(UUID uuid){
-        for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getUuid() == uuid){
-                list.remove(i);
-                break;
-            }
-        }
+        list.removeIf(task -> uuid.equals(task.getUuid()));
     }
 
     public Task getTask(UUID uuid){

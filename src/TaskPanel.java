@@ -9,6 +9,7 @@ public class TaskPanel implements ActionListener{
     JLabel nameLabel;
     JLabel dateLabel;
     JLabel priorityLabel;
+    JCheckBox completedBox;
     JButton button = new JButton("Delete");
     Runnable deleteCallback;
 
@@ -18,11 +19,13 @@ public class TaskPanel implements ActionListener{
         this.nameLabel = new JLabel(task.getName());
         this.dateLabel = new JLabel(task.getDate());
         this.priorityLabel = new JLabel(task.getPriority());
+        this.completedBox = new JCheckBox();
         this.button.addActionListener(this);
-        this.panel.setLayout(new GridLayout(1,4));
+        this.panel.setLayout(new GridLayout(1,5));
         this.panel.add(this.nameLabel);
         this.panel.add(this.dateLabel);
         this.panel.add(this.priorityLabel);
+        this.panel.add(this.completedBox);
         this.panel.add(this.button);
     }
 
