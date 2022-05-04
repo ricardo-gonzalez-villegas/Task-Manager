@@ -14,13 +14,11 @@ public class Main {
         list.addTask(t4);
         list.addTask(t5);
 
-        TaskListPanel taskListPanel = new TaskListPanel(list);
-        CreateTaskPanel createTaskPanel = new CreateTaskPanel();
         JFrame frame = new JFrame();
+        MainPanel mainPanel = new MainPanel(list);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        frame.add(taskListPanel.getPanel());
-        frame.add(createTaskPanel.getCreateTaskPanel());
+        frame.add(mainPanel.getMainPanel());
         frame.setVisible(true);
     }
 }

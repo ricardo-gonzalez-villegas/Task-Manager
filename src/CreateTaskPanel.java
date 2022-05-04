@@ -13,7 +13,10 @@ public class CreateTaskPanel implements ActionListener {
     JLabel priorityLabel = new JLabel("Priority : ");
     JComboBox<String> priorityList = new JComboBox<>(priorityLevels);
     JButton submitButton = new JButton("Add");
-    public CreateTaskPanel(){
+
+    Runnable showTaskListPanel;
+    public CreateTaskPanel(Runnable showTaskListPanel){
+        this.showTaskListPanel = showTaskListPanel;
         this.panel.setLayout(new GridLayout(7,1));
         this.submitButton.addActionListener(this);
         this.panel.add(nameLabel);
@@ -24,6 +27,12 @@ public class CreateTaskPanel implements ActionListener {
         this.panel.add(priorityList);
         this.panel.add(submitButton);
 
+    }
+
+    public void clearFields(){
+        this.nameField.setText("");
+        this.dateField.setText("");
+        this.priorityList.setSelectedItem("Low");
     }
 
     public JPanel getCreateTaskPanel(){
@@ -38,5 +47,7 @@ public class CreateTaskPanel implements ActionListener {
         String priority = this.priorityList.getSelectedItem().toString();
         Task task = new Task(name, date, priority);
         TaskList.addTask(task);
+        this.clearFields();
+        this.showTaskListPanel.run();
     }
 }

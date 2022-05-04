@@ -22,6 +22,7 @@ public class TaskListPanel {
     }
 
     public JPanel getPanel(){
+       this.onItemDeleted();
        return this.panel;
    }
 
