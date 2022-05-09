@@ -13,9 +13,10 @@ public class CreateTaskPanel implements ActionListener {
     JLabel priorityLabel = new JLabel("Priority : ");
     JComboBox<String> priorityList = new JComboBox<>(priorityLevels);
     JButton submitButton = new JButton("Add");
-
     Runnable showTaskListPanel;
     public CreateTaskPanel(Runnable showTaskListPanel){
+        //after a task is created the panel will be cleared
+        //and all the tasks displayed
         this.showTaskListPanel = showTaskListPanel;
         this.panel.setLayout(new GridLayout(7,1));
         this.submitButton.addActionListener(this);
@@ -26,28 +27,32 @@ public class CreateTaskPanel implements ActionListener {
         this.panel.add(priorityLabel);
         this.panel.add(priorityList);
         this.panel.add(submitButton);
-
     }
 
-    public void clearFields(){
+    private void clearFields(){
         this.nameField.setText("");
         this.dateField.setText("");
         this.priorityList.setSelectedItem("Low");
+    }
+
+    private void addTask(){
+        String name = this.nameField.getText();
+        String date = this.dateField.getText();
+        String priority = this.priorityList.getSelectedItem().toString();
+        Task task = new Task(name, date, priority);
+        TaskListEnum taskListEnum = TaskListEnum.INSTANCE;
+        taskListEnum.addTask(task);
     }
 
     public JPanel getCreateTaskPanel(){
         return panel;
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        String name = this.nameField.getText();
-        String date = this.dateField.getText();
-        String priority = this.priorityList.getSelectedItem().toString();
-        Task task = new Task(name, date, priority);
-        TaskList.addTask(task);
-        this.clearFields();
-        this.showTaskListPanel.run();
+        addTask();
+        clearFields();
+        showTaskListPanel.run();
     }
+
 }

@@ -7,13 +7,12 @@ public class MainPanel implements ActionListener {
     JPanel mainPanel = new JPanel();
     CreateTaskPanel createTaskPanel;
     TaskListPanel taskListPanel;
-
     JButton addTaskButton;
 
-    public MainPanel(TaskList list){
+    public MainPanel(){
         this.addTaskButton = new JButton("Add Task");
         this.createTaskPanel = new CreateTaskPanel(this::setTaskListPanel);
-        this.taskListPanel = new TaskListPanel(list);
+        this.taskListPanel = new TaskListPanel();
         this.addTaskButton.addActionListener(this);
         this.mainPanel.add(addTaskButton);
         this.mainPanel.add(this.taskListPanel.getPanel());

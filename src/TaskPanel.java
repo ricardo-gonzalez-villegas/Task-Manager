@@ -12,6 +12,7 @@ public class TaskPanel implements ActionListener{
     JCheckBox completedBox;
     JButton button = new JButton("Delete");
     Runnable deleteCallback;
+    TaskListEnum taskListEnum = TaskListEnum.INSTANCE;
 
     public TaskPanel(Task task, Runnable deleteCallback){
         this.task = task;
@@ -35,8 +36,12 @@ public class TaskPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(this.task.getUuid());
-        TaskList.deleteTask(this.task.getUuid());
-        this.deleteCallback.run();
+        deleteTask();
+    }
+
+    private void deleteTask(){
+        taskListEnum.deleteTask(this.task.getUuid());
+        deleteCallback.run();
     }
 }
+

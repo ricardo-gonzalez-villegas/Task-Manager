@@ -4,18 +4,16 @@ import java.awt.*;
 public class TaskListPanel {
    JPanel panel = new JPanel();
 
-   TaskList taskList;
-   
-   public TaskListPanel(TaskList list){
-       int rows = list.getTaskCount();
-       this.panel.setLayout(new GridLayout(rows, 1));
-       this.taskList = list;
+   TaskListEnum taskListEnum = TaskListEnum.INSTANCE;
 
+   public TaskListPanel(){
+       int rows = taskListEnum.getTaskCount();
+       this.panel.setLayout(new GridLayout(rows, 1));
        addTasksToPanel();
    }
 
     private void addTasksToPanel() {
-        for (Task task: this.taskList.getTaskList()) {
+        for (Task task: taskListEnum.getTaskList()) {
             TaskPanel taskPanel = new TaskPanel(task, this::onItemDeleted);
             this.panel.add(taskPanel.getPanel());
         }
