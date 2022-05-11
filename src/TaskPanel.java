@@ -20,8 +20,11 @@ public class TaskPanel implements ActionListener{
         this.nameLabel = new JLabel(task.getName());
         this.dateLabel = new JLabel(task.getDate());
         this.priorityLabel = new JLabel(task.getPriority());
-        this.completedBox = new JCheckBox();
+        this.completedBox = new JCheckBox("Completed",this.task.getCompleted());
         this.button.addActionListener(this);
+        this.completedBox.addActionListener(e -> {
+            toggleTaskCompleted();
+        });
         this.panel.setLayout(new GridLayout(1,5));
         this.panel.add(this.nameLabel);
         this.panel.add(this.dateLabel);
@@ -42,6 +45,10 @@ public class TaskPanel implements ActionListener{
     private void deleteTask(){
         taskListEnum.deleteTask(this.task.getUuid());
         deleteCallback.run();
+    }
+
+    private void toggleTaskCompleted(){
+        this.task.toggleTaskCompleted();
     }
 }
 

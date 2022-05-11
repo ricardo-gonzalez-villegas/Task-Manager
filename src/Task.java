@@ -33,7 +33,7 @@ public class Task {
         return this.completed;
     }
 
-    public void toggleCompleted(){
+    public void toggleTaskCompleted(){
         this.completed = !this.completed;
     }
 

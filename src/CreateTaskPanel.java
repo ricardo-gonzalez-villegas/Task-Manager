@@ -13,6 +13,7 @@ public class CreateTaskPanel implements ActionListener {
     JLabel priorityLabel = new JLabel("Priority : ");
     JComboBox<String> priorityList = new JComboBox<>(priorityLevels);
     JButton submitButton = new JButton("Add");
+    JButton backButton = new JButton("Back");
     Runnable showTaskListPanel;
     public CreateTaskPanel(Runnable showTaskListPanel){
         //after a task is created the panel will be cleared
@@ -27,6 +28,10 @@ public class CreateTaskPanel implements ActionListener {
         this.panel.add(priorityLabel);
         this.panel.add(priorityList);
         this.panel.add(submitButton);
+        this.panel.add(backButton);
+        this.backButton.addActionListener(e -> {
+            showTaskListPanel.run();
+        });
     }
 
     private void clearFields(){

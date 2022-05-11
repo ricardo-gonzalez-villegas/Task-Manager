@@ -15,6 +15,7 @@ public class MainPanel implements ActionListener {
         this.taskListPanel = new TaskListPanel();
         this.addTaskButton.addActionListener(this);
         this.mainPanel.add(addTaskButton);
+        //only adds the task list panel at the start
         this.mainPanel.add(this.taskListPanel.getPanel());
         this.mainPanel.setLayout(new GridLayout(2, 1));
     }

@@ -1,7 +1,9 @@
+import java.io.File;
+import java.io.IOException;
 import javax.swing.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Task t1 = new Task("Task One", "01-JUN-2022","Low");
         Task t2 = new Task("Task Two", "01-JUN-2022","Low");
         Task t3 = new Task("Task Three", "01-JUN-2022","Low");
@@ -14,11 +16,19 @@ public class Main {
         list.addTask(t4);
         list.addTask(t5);
 
-        JFrame frame = new JFrame();
-        MainPanel mainPanel = new MainPanel();
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.add(mainPanel.getMainPanel());
-        frame.setVisible(true);
+        File file = new File("./task-list.txt");
+        Operations operations = Operations.INSTANCE;
+        operations.readTaskList();
+
+        if (!file.exists()){
+            file.createNewFile();
+        } else if (file.length() != 0){
+            JFrame frame = new JFrame();
+            MainPanel mainPanel = new MainPanel();
+            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            frame.add(mainPanel.getMainPanel());
+            frame.setVisible(true);
+        }
     }
 }

@@ -6,6 +6,10 @@ public enum TaskListEnum {
 
     private ArrayList<Task> taskList = new ArrayList<>();
 
+    public void setTaskList(ArrayList<Task> taskList){
+        this.taskList = taskList;
+    }
+
     public void addTask(Task task){
         taskList.add(task);
     }
@@ -30,5 +34,4 @@ public enum TaskListEnum {
     public int getTaskCount(){
         return taskList.size();
     }
-
 }
