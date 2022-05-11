@@ -15,6 +15,8 @@ public class CreateTaskPanel implements ActionListener {
     JButton submitButton = new JButton("Add");
     JButton backButton = new JButton("Back");
     Runnable showTaskListPanel;
+
+    Operations operations = Operations.INSTANCE;
     public CreateTaskPanel(Runnable showTaskListPanel){
         //after a task is created the panel will be cleared
         //and all the tasks displayed
@@ -30,6 +32,7 @@ public class CreateTaskPanel implements ActionListener {
         this.panel.add(submitButton);
         this.panel.add(backButton);
         this.backButton.addActionListener(e -> {
+            clearFields();
             showTaskListPanel.run();
         });
     }
@@ -47,6 +50,7 @@ public class CreateTaskPanel implements ActionListener {
         Task task = new Task(name, date, priority);
         TaskListEnum taskListEnum = TaskListEnum.INSTANCE;
         taskListEnum.addTask(task);
+        operations.writeTaskList();
     }
 
     public JPanel getCreateTaskPanel(){

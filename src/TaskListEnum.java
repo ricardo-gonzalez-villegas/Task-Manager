@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.UUID;
 
-public enum TaskListEnum {
+public enum TaskListEnum{
     INSTANCE;
 
     private ArrayList<Task> taskList = new ArrayList<>();
@@ -33,5 +33,11 @@ public enum TaskListEnum {
 
     public int getTaskCount(){
         return taskList.size();
+    }
+
+    public void listPrint(){
+        for (Task task: this.taskList){
+            System.out.println(task.toString());
+        }
     }
 }

@@ -14,6 +14,8 @@ public class TaskPanel implements ActionListener{
     Runnable deleteCallback;
     TaskListEnum taskListEnum = TaskListEnum.INSTANCE;
 
+    Operations operations = Operations.INSTANCE;
+
     public TaskPanel(Task task, Runnable deleteCallback){
         this.task = task;
         this.deleteCallback = deleteCallback;
@@ -45,10 +47,13 @@ public class TaskPanel implements ActionListener{
     private void deleteTask(){
         taskListEnum.deleteTask(this.task.getUuid());
         deleteCallback.run();
+        operations.writeTaskList();
+
     }
 
     private void toggleTaskCompleted(){
         this.task.toggleTaskCompleted();
+        operations.writeTaskList();
     }
 }
 

@@ -1,6 +1,9 @@
 import java.util.UUID;
-
-public class Task {
+import java.io.Serial;
+import java.io.Serializable;
+public class Task implements Serializable{
+    @Serial
+    private static final long serialVersionUID = 1L;
     private UUID uuid = UUID.randomUUID();
     private String name;
     private String date;
@@ -37,5 +40,8 @@ public class Task {
         this.completed = !this.completed;
     }
 
+    public String toString(){
+        return this.getName();
+    }
 
 }
